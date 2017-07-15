@@ -1,35 +1,55 @@
 #using MoDiscoTGG.*
 #using AttrCondDefLibrary.*
 
-#rule FieldDec2Property #extends FieldDec2Property_Abstract #with MoDiscoTGG
+#rule FieldDec2Property #with MoDiscoTGG
 
 #source { 
-
-	++typeAccess : TypeAccess{
-		++-type->jType
+	jOwnerType : AbstractTypeDeclaration{
+		++-bodyDeclarations->bodyDeclaration
 	}
 	
+	++bodyDeclaration : FieldDeclaration{
+		++-type->typeAccess
+		++-fragments->vdf
+	}
 	
-	jType : Type
+	++typeAccess : TypeAccess{
+
+	}
+	
+	++vdf : VariableDeclarationFragment{
+		
+	}
+
 }
 
 #target {
-
-	++feature : Property{
-		++-type->uType
+	uOwnerType : Class{
+		++-ownedAttribute->feature
 	}
 	
-	uType : Type
+	++feature : Property{
+
+	}
+	
 }
 
 #correspondence {
-
-	
-	jt2ut : NamedElement2NamedElement{
-		#src->jType
-		#trg->uType
+	jo2uo : NamedElement2NamedElement{
+		#src->jOwnerType
+		#trg->uOwnerType
 	}
-
+	++ md2o : NamedElement2NamedElement {
+		#src->bodyDeclaration
+		#trg->feature
+	}
+	
+	++ ta2p : TypeAccess2Property {
+		#src->typeAccess
+		#trg->feature
+	}
 }
 
-
+#attributeConditions {
+	eq(vdf.name,feature.name)
+}

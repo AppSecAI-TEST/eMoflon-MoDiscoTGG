@@ -1,0 +1,36 @@
+#using MoDiscoTGG.*
+#using AttrCondDefLibrary.*
+
+#rule TypeAccessType2ParameterType #with MoDiscoTGG
+
+#source { 
+	jtype:Type
+	
+	typeAccess:TypeAccess {
+		++-type->jtype
+	}
+}
+
+#target {
+	uType:Type
+	
+	param:Parameter {
+		++-type->uType
+	}
+}
+
+#correspondence {
+	jt2ut : NamedElement2NamedElement{
+		#src->jtype
+		#trg->uType
+	}
+	
+	ta2p:TypeAccess2Parameter {
+		#src->typeAccess
+		#trg->param
+	}
+}
+
+#attributeConditions {
+	
+}

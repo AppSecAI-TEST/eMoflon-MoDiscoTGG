@@ -13,10 +13,7 @@
 	}
 	
 	++ typeAccess : TypeAccess{
-		++ -type->jtype
 	}
-	
-	jtype : Type
 	
 }
 
@@ -25,10 +22,7 @@
 		++ -ownedParameter->param
 	}
 	++ param : Parameter{
-		++ -type->uType
 	}
-	
-	uType : Type
 }
 
 #correspondence {	
@@ -37,13 +31,14 @@
 		#trg->operation
 	}
 	
-	jt2ut : NamedElement2NamedElement{
-		#src->jtype
-		#trg->uType
-	}
-	
 	++ vd2p : VariableDec2Parameter {
 		#src->variableDec
+		#trg->param
+	}
+	
+	
+	++ta2p:TypeAccess2Parameter {
+		#src->typeAccess
 		#trg->param
 	}
 	

@@ -49,6 +49,16 @@
 		#trg->InterfaceRealization
 	}
 	
+	TypeAccess2Property {
+		#src->TypeAccess
+		#trg->Property
+	}
+	
+	TypeAccess2Parameter {
+		#src->TypeAccess
+		#trg->Parameter
+	}
+	
 	CompilationUnit2Artifact{
 		#src->CompilationUnit
 		#trg->Artifact

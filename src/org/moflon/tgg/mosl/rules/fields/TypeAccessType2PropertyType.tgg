@@ -1,0 +1,36 @@
+#using MoDiscoTGG.*
+#using AttrCondDefLibrary.*
+
+#rule TypeAccessType2PropertyType #with MoDiscoTGG
+
+#source { 
+	typeAccess:TypeAccess {
+		++-type->javaType
+	}
+	
+	javaType:Type
+}
+
+#target {
+	property:Property {
+		++-type->umlType
+	}
+	
+	umlType:Type
+}
+
+#correspondence {
+	ta2p:TypeAccess2Property {
+		#src->typeAccess
+		#trg->property
+	}
+	
+	jt2ut:NamedElement2NamedElement{
+		#src->javaType
+		#trg->umlType
+	}
+}
+
+#attributeConditions {
+	
+}
