@@ -4,19 +4,13 @@
 #rule TypeAccess2Generalization #with MoDiscoTGG
 
 
-#source { 
-	!nacTypeAccess:TypeAccess
-	
+#source {
 	classDec : ClassDeclaration {
 		++ -superClass->typeAcc
-		-superClass->nacTypeAccess
 	}
 	
 	++ typeAcc : TypeAccess {
-		++ -type->superClassDec
 	}
-	
-	superClassDec : ClassDeclaration
 }
 
 #target {
@@ -25,10 +19,7 @@
 	}
 	
 	++ generalization : Generalization {
-		++ -general->superClass
 	}
-	
-	superClass : Class
 }
 
 #correspondence {
@@ -42,10 +33,6 @@
 		#trg->generalization
 	}
 	
-	cd2c2 : NamedElement2NamedElement {
-		#src->superClassDec
-		#trg->superClass
-	}
 }
 
 #attributeConditions {
